@@ -1,0 +1,360 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+\documentclass[11pt,twoside,a4paper]{book}
+
+\usepackage{estilos} %Relacionado ao arquivo estilos.sty com os packages usados
+\makeindex
+\title{$\tau$-Cristais Rígidos \\  Douglas Smigly e Daniel Kawai}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\chapter*{Introdução}
+
+\chapter{Preliminares}
+
+\section{Anel de Witt e Caracterização Universal}
+%https://ncatlab.org/nlab/show/ring+of+Witt+vectors#basic_examples
+\begin{definicao}
+Seja $K$ um anel comutativo. Se a característica de $K$ for $0,$ dizemos que o \textbf{anel de Witt} $W(K)$ de $K$ possui adição
+\[
+(a_1, a_2, \ldots ) + (b_1, b_2, \ldots ) = \left( \sum_1 (a_1, b_1), \sum_2(a_1, a_2, b_1, b_2), \ldots \right)
+\]
+e multiplicação
+\[
+(a_1, a_2, \ldots ) \cdot (b_1, b_2, \ldots ) = \left( \prod_1 (a_1, b_1), \prod_2(a_1, a_2, b_1, b_2), \ldots \right)
+\]
+se $K$ possui característica prima, indexamos as fórmulas determinantes por $p_1, p_2, \ldots$ ao invés de $1, 2, 3, \ldots$.
+
+$\sum_i$ e $\prod_i$ são chamados \textbf{polinômios somadores} e \textbf{polinômios multiplicadores}, respectivamente.
+\end{definicao}
+\begin{definicao}\index{Componente Fantasma}\index{Polinômio de Witt} 
+Seja $x_1, x_2, x_3, \ldots$ uma coleção de variáveis. Podemos definir uma coleção infinita de polinômios em $\mathbb{Z}[x_1, x_2, x_3, \ldots ]$ usando as seguintes fórmulas:
+\[
+w_1(X) = x_1,
+\]
+\[
+w_2(X) = x_1^2 + 2x^2,
+\]
+\[
+w_3(X) = x_1^3 + 3x_3,
+\]
+\[
+w_4(X) = x_1^4 + 2x_2^2 + 4x_4 
+\]
+e em geral, $w_n(X) = \sum\limits_{d \mid n} d x_d^{\frac{n}{d}}.$ O valo $w_n(X)$ do $n$-ésimo polinômio de Witt é chamado de $n$-ésima \textbf{Componente Fantasma}
+
+
+\end{definicao}
+\includegraphics[scale=10]{92624337-ghost-icon-cartoon-illustration-of-ghost-vector-icon-for-web.jpg}
+\begin{definicao}
+Sejam $\Sigma_i, \Pi_i$ e $\iota_i$ conjuntos de vetores com as seguintes propriedades:
+\[
+w_n(\Sigma) = w_n(X) + w_n(Y), w_n(\Pi) = w_n(X) \cdot w_n(Y), w_n(\iota) = - w_n(X).
+\]
+\end{definicao}
+
+\subsection{Caracterização Universal}
+\begin{definicao}\index{Lambda-anel}\index{Polinômio universal}
+Uma $\lambda$-estrutura num anel comutativo com unidade $R$ é definida como uma sequência de mapas $\lambda^n$ para $n \ge 0$ satisfazendo
+\begin{itemize}
+    \item $\lambda^0(r) = 1 \ \forall r \in R;$
+    \item $\lambda^1 = \mbox{id};$
+    \item $\lambda^n(1) = 0, \mbox{para } n > 1;$
+    \item $\lambda^n(r + s) = \sum\limits_{k = 0}^n \lambda^k(r) \lambda^{n-k}(s), \ \forall r,s \in R;$
+    \item $\lambda^n(rs) = P_n(\lambda^1(r), \ldots, \lambda^n(r),\lambda^1(sw), \ldots, \lambda^n(s)) \ \forall r,s \in R;$
+    \item $\lambda^m(\lambda^n(r)) =P_{m,n}(\lambda^1(r), \ldots, \lambda^{mn}(r)), \ \forall r \in R.$
+\end{itemize}
+onde $P_n$ e $P_{m,n}$ são certos \textbf{polinômios universais} com coeficientes inteiros. Nesse caso, $R$ é chamado \textbf{Lambda-Anel}, e também denotamos por $\Lambda$-anel. 
+\end{definicao}
+Note que $\lambda^n$ não precisam ser morfismos de anéis.
+\begin{exemplo}
+Q
+\end{exemplo}
+%https://ncatlab.org/nlab/show/Lambda-ring
+\begin{teorema}
+Temos que
+\[
+W \colon k \mapsto W(k)
+\]
+é um funtor
+\[
+W \colon \mathbf{CRing} \to \mathbf{\Lambda Ring}
+\]
+da categoria dos anéis comutativos na categoria dos $\Lambda$-anéis.
+Composto com o funtor esquecimento
+\[
+U \colon \mathbf{\Lambda Ring} \to \mathbf{CRing}, 
+\]
+este é o único endofuntor $W \colon \mathbf{CRing} \to \mathbf{Cring}$ tal que os polinômios de Witt
+\[
+w_n \colon \begin{cases}
+W(A) \to A \\
+a \mapsto w_n(a)
+\end{cases}
+\]
+são homomorfismos de anéis.
+\end{teorema}
+\begin{proof}
+There is a nice trick to prove that W(A) is a ring when A is a Q-algebra. Just define ψ:W(A)→AN by (a1,a2,…)↦(w1(a),w2(a),…). This is a bijection and the addition and multiplication is taken to component-wise addition and multiplication, so since this is the standard ring structure we know W(A) is a ring. Also, w(0,0,…)=(0,0,…), so (0,0,…) is the additive identity, W(1,0,0,…)=(1,1,1,…) which shows (1,0,0,…) is the multiplicative identity, and w(ι1(a),ι2(a),…)=(−a1,−a2,…), so we see (ι1(a),ι2(a),…) is the additive inverse.
+
+We can actually get this idea to work for any characteristic 0 ring by considering the embedding A→A⊗Q. We have an induced injective map W(A)→W(A⊗Q). The addition and multiplication is defined by polynomials over Z, so these operations are preserved upon tensoring with Q. We just proved above that W(A⊗Q) is a ring, so since (0,0,…)↦(0,0,…) and (1,0,0,…)↦(1,0,0,…) and the map preserves inverses we get that the image of the embedding W(A)→W(A⊗Q) is a subring and hence W(A) is a ring.
+
+Lastly, we need to prove this for positive characteristic rings. Choose a characteristic 0 ring that surjects onto A, say B→A. Then since the induced map again preserves everything and W(B)→W(A) is surjective, the image is a ring and hence W(A) is a ring
+\end{proof}
+
+\begin{proposicao}
+A construção dos anéis de Witt $W(k)$ em um dado anel comutativo $k$ é adjunta à direita do funtor esquecimento $U$ dos $\Lambda$-anéis aos anéis comutativos
+\[
+(U \dashv W) \colon \mathbf{CRing} \zm\z \mathbf{\Lambda Ring}
+\]
+Consequentemente, os anéis de Witt são os $\Lambda$-anéis colivres. (Hazewinkel 08, p. 87, p. 97)
+\end{proposicao}
+\begin{definicao}
+Sejam $k$ um anel perfeito, $K$ o anel de frações de $k$, $W$ o anel de vetores de Witt de $K$, e $\sigma$ um automorfismo de Frobenius.
+
+Dizemos que um \emph{F-Cristal} é uma dupla $(M, \varphi),$ composta de um $W$-módulo livre $M$ de posto finito e $\varphi$ é um endomorfismo injetivo $\sigma$-linear de $M.$
+Também teles
+\end{definicao}
+AaaaaaaaaaosssoslamzxAKOXNF EWFC DSVDDJOFNFOEFNNNNNNFIEFNEFIEFIEFNEFNEWOFNDS  MFMMFMFMFpo
+\begin{exemplo}
+%https://math.berkeley.edu/~ogus/Seminar%20on%20BLM/slopeexample.pdf Newton Polygons
+\end{exemplo}
+\section{Espaços Anelados}
+
+\begin{definicao}
+Um \textbf{pré-feixe de anéis} num espaço topológico $(X,\tau)$ consiste de:
+\begin{itemize}
+    \item Para cada $U$ aberto, um anel comutativo com unidade $O(U)$.
+    \item Para cada par $(U,V)$ de abertos tais que $U\subseteq V,$ uma função $r_{U,V}:O(V)\rightarrow O(U).$
+\end{itemize}
+E satisfaz o seguinte:
+\begin{itemize}
+    \item Para $U,V,W$ abertos tais que $U\subseteq V\subseteq W$ então $r_{U,V}\circ r_{V,W}=r_{U,W}.$
+    \item Para $U$ aberto, então $r_{U,U}=1_{O(U)}.$
+\end{itemize}
+Nesse caso dizemos que $(X,\tau,O,r)$ é um \textbf{espaço preanelado}.
+\end{definicao}
+
+\begin{definicao}
+Um \textbf{feixe de anéis} num espaço topológico $(X,\tau)$ é um prefeixe $O$ tal que:
+\begin{itemize}
+    \item Para cobertura $(U_i)$ de abertos de $U$ e para $s,t\in O(U),$ se $\forall i:r_{U_i,U}(s)=r_{U_i,U}(t),$ então $s=t.$
+    \item Para cobertura $(U_i)$ de abertos de $U$ e para família $(s_i)$ tal que $\forall i:s_i\in O(U_i),$ se $\forall i,j:r_{U_i\cap U_j,U_i}(s_i)=r_{U_i\cap U_j,U_j}(s_j),$ então existe $s\in O(U)$ tal que $\forall i:r_{U_i,U}(s)=s_i.$
+\end{itemize}
+Nesse caso dizemos que $(X,\tau,O,r)$ é um \textbf{espaço anelado}.
+\end{definicao}
+
+\begin{definicao}
+Para espaço anelado $(X,\tau,O,r)$ e para $x\in X,$ definimos o \textbf{stalk} em $x$ como o limite direto:
+\[
+O_x=\varinjlim\limits_{U}O(U),
+\]
+em que $U$ varia sobre o conjunto das vizinhanças abertas de $x,$ dirigido pela relação $\supseteq.$
+\end{definicao}
+
+\begin{definicao}
+Um \textbf{espaço localmente anelado} é um espaço anelado $(X,\tau,O,r)$ tal que para todo $x\in X$ o stalk $O_x$ seja um anel local.
+\end{definicao}
+
+\begin{exemplo}
+%https://math.berkeley.edu/~ogus/preprints/colloqhandout.pdf
+\end{exemplo}
+
+\begin{definicao}
+Um \textbf{morfismo de espaços anelados}:
+\[
+(X,\tau_X,O_X,r_X)\rightarrow(Y,\tau_Y,O_Y,r_Y)
+\]
+Consiste de:
+\begin{itemize}
+\item Uma função contínua $f:X\rightarrow Y.$
+\item Para $U\in\tau_Y$ uma função $\varphi_U:O_Y(U)\rightarrow O_X(f^{-1}[U]).$
+\end{itemize}
+E satisfaz:
+\begin{itemize}
+\item Para $U,V\in\tau_Y$ tais que $U\subseteq V,$ então o seguinte diagrama comuta:
+\begin{center}
+\begin{tikzcd}
+O_Y(V) \arrow{d}{(r_X)_{U,V}} \arrow{r}{\varphi_V} & O_X(f^{-1}[V]) \arrow{d}{(r_Y)_{f^{-1}[U],f^{-1}[V]}}\\
+O_X(U) \arrow{r}{\varphi_U} & O_X(f^{-1}[U])
+\end{tikzcd}
+\end{center}
+\end{itemize}
+\end{definicao}
+
+\begin{definicao}
+Um \textbf{morfismo de espaços localmente anelados}:
+\[
+(X,\tau_X,O_X,r_X)\rightarrow(Y,\tau_Y,O_Y,r_Y)
+\]
+é um morfismo de espaços anelados tal que para $x\in X$ o ideal maximal do stalk $(O_Y)_{f(x)}$ seja mandado para o ideal maximal do stalk $(O_X)_{x}.$
+\end{definicao}
+
+\section{Espectros de Anéis}
+
+\begin{definicao}
+Num anel comutativo $R,$ definimos o \textbf{espectro} de $R$ como o conjunto $\mathrm{Spec}(R)$ dos ideais primos de $R.$
+\end{definicao}
+
+\begin{definicao}
+Para anel comutativo $R,$ então:
+\begin{itemize}
+\item Para todo ideal $I$ definimos $V_I$ como o conjunto dos ideais primos $P$ tais que $I\nsubseteq P.$
+\item Para $a\in R$ definimos $B_a$ como o conjunto dos ideais primos $P$ tais que $a\notin P.$
+\end{itemize} 
+\end{definicao}
+
+\begin{proposicao}
+Para anel comutativo, então $\tau=\{V_I\mid I\lhd R\}$ é uma topologia e $\{B_a\mid a\in R\}$ é uma base dela.
+\end{proposicao}
+
+\begin{definicao}
+Para anel comutativo $R,$ chamamos $\tau=\{V_I\mid I\lhd R\}$ de \textbf{topologia de Zariski}.
+\end{definicao}
+
+\begin{definicao}
+Para anel comutativo $R,$ então podemos definir um feixe de anéis em $\mathrm{Spec}(R)$ assim:
+\begin{itemize}
+    \item Para $a\in R$ então $O_{B_a}=R_a,$ a localização de $R$ nas potências de $a.$
+    \item Para aberto $U,$ sendo $U=\bigcup_{i\in I}B_{a_i},$ então $O(U)=\lim_{i\in I}R_{a_i}.$
+\end{itemize}
+\end{definicao}
+
+\section{Esquemas de Anéis}
+
+\begin{definicao}
+Um \textbf{esquema afim} é um espaço localmente anelado isomorfo ao espectro $\mathrm{Spec}(R)$ de um anel comutativo.
+\end{definicao}
+
+\begin{definicao}
+Um \textbf{esquema} é um espaço localmente anelado $X$ admitindo uma cobertura de abertos $(U_i)_{i\in I}$ tal que cada $U_i$ seja um esquema afim.
+\end{definicao}
+
+\begin{definicao}
+Um \textbf{esquema noetheriano} é um esquema que admite uma cobertura finita de subconjuntos afins $\mathrm{Spec}(A_i)$ com $A_i$ anéis noetherianos.
+\end{definicao}
+
+\section{Espectros Formais}
+
+\begin{definicao}
+Um anel topológico $A$ é \textbf{linearmente topologizado} se e só se $0$ tem uma base de ideais.
+\end{definicao}
+
+\begin{definicao}
+Um \textbf{ideal de definição} $J$ de um anel linearmente topologizado é um ideal aberto tal que para toda vizinhança aberta $V$ de $0$ existe $n\geq 1$ tal que $J^n\subseteq V.$
+\end{definicao}
+
+\begin{definicao}
+Um anel linearmente topologizado é \textbf{preadmissível} se e só se admite um ideal de definição.
+\end{definicao}
+
+\begin{definicao}
+Um anel linearmente topologizado é \textbf{admissível} se e só se é preadmissível e completo.
+\end{definicao}
+
+\begin{definicao}
+Para anel admissível $A$ e $J$ um ideal de definição, então um ideal primo é aberto se e só se contém $J.$ Assim o conjunto $\mathrm{Spf}(A)$ dos ideais primos abertos de $A$ é o \textbf{espectro formal} de $A.$ Este conjunto tem uma estrutura de feixe no espectro de $A.$ Seja $(J_\lambda)$ um sistema fundamental de vizinhanças de $0$ consistindo de ideais de definição. Todos os espectros de $A/J_\lambda$ têm o mesmo espaço topológico mas têm diferentes estruturas de feixes. A estrutura de feixe de $\mathrm{Spf}(A)$ é o limite projetivo:
+\[
+\varinjlim_\lambda O(\mathrm{Spec}(A/J_\lambda)).
+\]
+\end{definicao}
+
+\section{Esquemas Formais}
+
+\begin{definicao}
+Um \textbf{espaço topologicamente anelado} é um espaço anelado $(X,\tau,O,r)$ em que os anéis $O(U)$ são anéis topológicos e as funções $r_{U,V}:O(V)\rightarrow O(U)$ são homomorfismos contínuos.
+\end{definicao}
+
+\begin{definicao}
+Um \textbf{morfismo} de espaços topologicamente anelados:
+\[
+(X,\tau_X,O_X,r_X)\rightarrow(Y,\tau_Y,O_Y,r_Y)
+\]
+é um morfismo de espaços anelados $(f,\varphi)$ tal que para cada $U_\in\tau_Y$ o mapa induzido $\varphi_U:O_Y(U)\rightarrow O_X(f^{-1}[U])$ seja um homomorfismo contínuo.
+\end{definicao}
+
+\begin{definicao}
+Um \textbf{esquema formal} é um espaço topologicamente anelado $(X,\tau,O,r)$ tal que cada ponto de $X$ admite uma vizinhança aberta isomorfa ao espectro formal de um anel noetheriano.
+\end{definicao}
+
+\begin{definicao}
+Um \textbf{morfismo} de esquemas formais $X$ e $Y$ é simplesmente um morfismo de espaços topologi
+\end{definicao}
+
+\chapter{$\tau$-Cristais Rígidos}
+
+\section{Geometria Formal}
+
+\begin{definicao}
+Seja $X$ um $k$-esquema noetheriano. O produto fibrado $X\times\mathrm{Spec}(k[t])$ é noetheriano. Pela mudança de base através de $\mathrm{Spec}(k)\rightarrow\mathrm{Spec}(k[t])$ que corresponde a $t\mapsto 0,$ temos uma imersão fechada:
+\[
+X=X\times\mathrm{Spec}(k)\rightarrow X\times\mathrm{Spec}(k[t]).
+\]
+Chamamos a função de \textbf{fibra especial}. Pela fibra especial, podemos considerar $X$ um subesquema fechado de $X\times\mathrm{Spec}(k[t]).$ O completamento desse subesquema dá um esquema $k[t]-formal$:
+\[
+X_\mathrm{for}=\overbrace{X\times\mathrm{Spec}(k[t])}.
+\]
+\end{definicao}
+
+\begin{lema}
+Há um morfismo canônico $i_X:X_{\mathrm{for}}\rightarrow X\times\mathrm{Spec}(k[t])$ de espaços localmente anelados. O mapeamento contínuo identifica o espaço topológico $X_\mathrm{for}$ com a imagem da função $X\rightarrow X\times\mathrm{Spec}(k[t]).$
+\end{lema}
+
+\begin{lema}
+Existe um funtor $X\mapsto X_{\mathrm{for}}$ de $k$-esquemas noetherianos a $k[[t]]$-esquemas formais que manda um morfismo $f:X\rightarrow Y$ a um morfismo $f_{\mathrm{for}}$ satisfazendo o seguinte:
+\begin{itemize}
+\item Quando identificamos os espaços topológicos $X_\mathrm{for}$ e $X$ assim como $Y_\mathrm{for}$ e $Y$, então como uma função de espaços topológicos $f_{\mathrm{for}}:X_{\mathrm{for}}\rightarrow Y_{\mathrm{for}}$ coincide com $f:X\rightarrow Y.$
+\item O diagrama comuta:
+\begin{center}
+\begin{tikzcd}
+X_{for} \arrow{dd}{\iota_X} \arrow{rr}{f_{for}}         &  & Y_{for} \arrow{dd}{\iota_Y} \\
+                                                            &  &                               \\
+{X \times \mbox{Speck}[t]} \arrow{rr}{f \times \mbox{id}} &  & {Y \times \mbox{Speck}[t]}   
+\end{tikzcd}
+\end{center}
+\end{itemize}
+\end{lema}
+
+\begin{lema}
+No caso afim, o funtor $-_\mathrm{for}$ tem a seguinte forma:
+\begin{itemize}
+    \item Para $k$-álgebra noetheriana, então $(\mathrm{Spec}(A))_{\mathrm{for}}=\mathrm{Spf}(A[[t]])$ em que $A[[t]]$ está com a topologia $t$-ádica.
+    \item Para morfismo $f:\mathrm{Spec}(A)\rightarrow\mathrm{Spec}(B)$ de $k$-esquemas noetherianos induzido por $f^{\#}:B\rightarrow A,$ então $f_\mathrm{for}:(\mathrm{Spec}(A))_\mathrm{for}\rightarrow(\mathrm{Spec}(B))_\mathrm{for}$ é induzido pelo homomorfismo de $k[[t]]$-álgebras:
+    \[
+    \begin{array}{rcl}
+        B[[t]] &\rightarrow& A[[t]] \\
+        \sum\limits_{n=0}^\infty b_nt^n&\mapsto& \sum\limits_{n=0}^\infty f^{\#}(b_n)t^n.
+    \end{array}
+    \]
+\end{itemize}
+\end{lema}
+
+\chapter{$\tau$-Cristais Formais}
+
+\section{Definições Iniciais}
+
+Seja $X$ um esquema de tipo finito sobre $k.$ Seja $\mathfrak{X}=X_{\mathrm{for}}$ o esquema formal de $X.$
+
+\begin{definicao}
+Um \textbf{$\tau$-cristal formal} em $X$ é um par $(\mathfrak{F},F)$ consistindo de:
+\begin{itemize}
+\item Um maço de vetores $\mathfrak{F}$ em $\mathfrak{X}.$ 
+\item Um morfismo $F:\tau^*\mathfrak{F}\rightarrow\mathfrak{F}$ de maços de vetores tal que $\mathrm{Coker}(F)$ é um $\mathcal{O}_\mathfrak{X}$-módulo de $t$-torsão.
+\end{itemize}
+\end{definicao}
+
+\begin{teorema}[Grothendieck-Katz]
+Para $\tau$-cristal formal $\mathfrak{T}$ de $X$ e $\lambda\geq 0,$ o conjunto dos pontos de $X$ tal que a inclinação de Newton de $\mathfrak{T}$ é $\geq\lambda$ é Zariski-fechado em $X.$
+\end{teorema}
+
+\printindex
+
+\end{document}
